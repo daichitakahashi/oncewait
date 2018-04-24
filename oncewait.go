@@ -2,11 +2,6 @@ package oncewait
 
 import "sync"
 
-type onceSet struct {
-	once    *sync.Once
-	channel chan struct{}
-}
-
 // OnceWaiter is
 type OnceWaiter struct {
 	once      sync.Once
