@@ -2,18 +2,20 @@ package oncewait
 
 import "sync"
 
-// Factory is
+// Factory offers OnceWaiter which is identified according to key string.
 type Factory struct {
 	sets sync.Map
 }
 
-// Get is
+// Get returns instance of OnceWaiter associated with the key.
+// In the first Get call, new instance is set.
 func (f *Factory) Get(key string) *OnceWaiter {
-	v, _ := f.sets.LoadOrStore(key, &OnceWaiter{completed: make(chan struct{})})
+	v, _ := f.sets.LoadOrStore(key, New())
 	return v.(*OnceWaiter)
 }
 
-// Refresh is
+// Refresh replaces instance of OnceWaiter associated with the key.
+// Usually Refresh should be called inside of Do's function f.
 func (f *Factory) Refresh(key string) {
-	f.sets.Store(key, &OnceWaiter{completed: make(chan struct{})})
+	f.sets.Store(key, New())
 }
