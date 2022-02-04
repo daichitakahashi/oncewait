@@ -1,10 +1,12 @@
 # oncewait
+[![Go Reference](https://pkg.go.dev/badge/github.com/daichitakahashi/oncewait.svg)](https://pkg.go.dev/github.com/daichitakahashi/oncewait)
+
 Package oncewait offers slightly more synced sync.Once and its factory.
 
 # Usage
 ```go
 func ExampleOnceWaiter(){
-    once := New()
+    once := oncewait.New()
 
     processFunc := func() {
         fmt.Println("start heavy process.")
