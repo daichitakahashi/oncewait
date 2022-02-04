@@ -1,13 +1,15 @@
-package oncewait
+package oncewait_test
 
 import (
 	"fmt"
 	"sync"
 	"time"
+
+	"github.com/daichitakahashi/oncewait"
 )
 
 func ExampleOnceWaiter() {
-	once := New()
+	once := oncewait.New()
 
 	processFunc := func() {
 		fmt.Println("start heavy process.")
@@ -43,7 +45,7 @@ func ExampleOnceWaiter() {
 }
 
 func ExampleFactory() {
-	var factory Factory
+	var factory oncewait.Factory
 	const key = "example"
 
 	processFunc := func() {
